@@ -20,8 +20,8 @@ defmodule Rumbl.SessionController do
 
   def delete(conn, _) do
     conn
-    |> Rumbl.Auth.logout
-    |> redirect(to: page_path(conn, :index))
+    |> Rumbl.Auth.logout()
+    |> redirect(to: page_path(Conn, :index))
   end
 
 end
