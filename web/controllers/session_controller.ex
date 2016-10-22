@@ -6,6 +6,7 @@ defmodule Rumbl.SessionController do
   end
 
   def create(conn, %{"session" => %{"username" => user, "password" => pass}}) do
+    IO.inspect(label: "SessionController create")
     case Rumbl.Auth.login_by_username_and_pass(conn, user, pass, repo: Repo) do
       {:ok, conn} ->
         conn
@@ -19,9 +20,10 @@ defmodule Rumbl.SessionController do
   end
 
   def delete(conn, _) do
+    IO.inspect(label: "SessionController delete")
     conn
     |> Rumbl.Auth.logout()
-    |> redirect(to: page_path(Conn, :index))
+    |> redirect(to: page_path(conn, :index))
   end
 
 end

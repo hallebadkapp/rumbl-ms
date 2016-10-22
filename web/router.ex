@@ -13,7 +13,7 @@ defmodule Rumbl.Router do
   pipeline :api do
     plug :accepts, ["json"]
   end
-
+  IO.inspect(label: "router.ex scope")
   scope "/", Rumbl do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
@@ -24,7 +24,7 @@ defmodule Rumbl.Router do
 
   scope "/manage", Rumbl do
     pipe_through [:browser, :authenticate_user]
-
+    IO.inspect(label: "router.ex resources after manage")
     resources "/videos", VideoController
   end
 
