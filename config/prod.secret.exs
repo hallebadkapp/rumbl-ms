@@ -15,6 +15,6 @@ config :rumbl, Rumbl.Endpoint,
 config :rumbl, Rumbl.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
-  password: "postgres",
+  password: "pw",
   database: "rumbl_prod",
   pool_size: 20
