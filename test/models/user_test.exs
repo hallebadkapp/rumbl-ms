@@ -1,11 +1,11 @@
 defmodule Rumbl.UserTest do
-  use Rumbl.ModelCase, async: true
+  use Rumbl.ModelCase
   alias Rumbl.User
 
-  @valid_attrs %{name: " A User", username: "eva", password: "secret"}
+  @valid_attrs %{name: "A User", username: "eva"}
   @invalid_attrs %{}
 
-  test "Changeset with valid attributes" do
+  test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, @valid_attrs)
     assert changeset.valid?
   end
@@ -18,14 +18,14 @@ defmodule Rumbl.UserTest do
   test "changeset does not accept long usernames" do
     attrs = Map.put(@valid_attrs, :username, String.duplicate("a", 30))
     assert {:username, {"should be at most %{count} character(s)", [count: 20]}} in
-      errors_on(%User{}, attrs)
+           errors_on(%User{}, attrs)
   end
 
   test "registration_changeset password must be at least 6 chars long" do
     attrs = Map.put(@valid_attrs, :password, "12345")
     changeset = User.registration_changeset(%User{}, attrs)
     assert {:password, {"should be at least %{count} character(s)", count: 6}}
-          in changeset.errors
+           in changeset.errors
   end
 
   test "registration_changeset with valid attributes hashes password" do
@@ -37,5 +37,4 @@ defmodule Rumbl.UserTest do
     assert pass_hash
     assert Comeonin.Bcrypt.checkpw(pass, pass_hash)
   end
-
 end

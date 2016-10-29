@@ -1486,7 +1486,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 var video = document.getElementById("video");
-console.log("start app.js!");
+
 if (video) {
   _player2.default.init(video.id, video.getAttribute("data-player-id"), function () {
     console.log("player ready!");

@@ -6,5 +6,4 @@ defmodule Rumbl.WatchController do
     video = Repo.get!(Video, id)
     render conn, "show.html", video: video
   end
-
 end
